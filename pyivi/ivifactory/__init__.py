@@ -224,15 +224,16 @@ def get_model_name(address):
     import visa
     model = "no device"
     try:
-        instr = visa.Instrument(str(address))
+        rm = visa.ResourceManager()
+        instr = rm.open_resource(str(address))
         timeout = instr.timeout
     except VisaIOError:
         print("instrument at address " + str(address) + " didn't reply in "
                                                         "time...")
     else:
         try:   
-            instr.timeout = 0.1
-            ret = instr.ask("*IDN?")
+            instr.timeout = 100  # in ms
+            ret = instr.query("*IDN?")
         except (VisaIOError, TypeError):
             print("instrument at address " + \
                 address + \
@@ -242,6 +243,7 @@ def get_model_name(address):
             model = model.replace(' ', '')
         finally:
             instr.timeout = timeout
+            instr.close()
     return model
 
 def register_wrapper(flavour, instrument_type):
