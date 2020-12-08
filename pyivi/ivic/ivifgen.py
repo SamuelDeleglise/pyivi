@@ -38,7 +38,7 @@ class ShortCutFreqGen(ShortCut):
         
     @property
     def channel_name(self):
-        return self.parent.channels.keys()[self.channel_idx-1]
+        return list(self.parent.channels.keys())[self.channel_idx-1]
 
 
 add_sc_fields(ShortCutFreqGen, 
