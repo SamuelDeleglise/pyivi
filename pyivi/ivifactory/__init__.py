@@ -220,8 +220,8 @@ def supporting_modules(model):
 def get_model_name(address):
     """Physically queries the instrument model at the given address"""
     
-    from visa import VisaIOError
-    import visa
+    from pyvisa import VisaIOError
+    import pyvisa as visa
     model = "no device"
     try:
         instr = visa.Instrument(str(address))
