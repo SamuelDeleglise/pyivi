@@ -93,7 +93,7 @@ class ShortCutNA(ShortCut):
         
         self.measurement_idx = 1
         self.measurement_idxs = Enum(['select measurement'] + \
-                                     self.active_channel.measurements.keys())
+                                     list(self.active_channel.measurements.keys()))
         self.create_measurement()
     
     @property

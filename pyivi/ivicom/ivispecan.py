@@ -184,7 +184,7 @@ class ShortCutSpecAn(ShortCut):
     
     @property
     def trace_name(self):
-        return self.parent.traces.keys()[self.trace_idx-1]
+        return list(self.parent.traces.keys())[self.trace_idx-1]
 
     @property
     def active_trace(self):
