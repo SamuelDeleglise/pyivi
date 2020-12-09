@@ -14,7 +14,7 @@ def read(fname):
 
 setup(
     name="pyivi",
-    version="0.0.8",
+    version="0.0.9",
     author = "Samuel Deleglise",
     author_email = "samuel.deleglise@gmail.com",
     description = ("""Control of data acquisition with remote instruments using 
