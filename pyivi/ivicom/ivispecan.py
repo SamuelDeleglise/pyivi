@@ -158,7 +158,7 @@ class ShortCutSpecAn(ShortCut):
     def __init__(self, parent):
         super(ShortCutSpecAn, self).__init__(parent)
         self.trace_idx = 1
-        self.trace_idxs = Enum(['select trace'] + parent.traces.keys())
+        self.trace_idxs = Enum(['select trace'] + list(parent.traces.keys()))
         
     @property
     def frequency_center(self):
@@ -184,7 +184,7 @@ class ShortCutSpecAn(ShortCut):
     
     @property
     def trace_name(self):
-        return self.parent.traces.keys()[self.trace_idx-1]
+        return list(self.parent.traces.keys())[self.trace_idx-1]
 
     @property
     def active_trace(self):

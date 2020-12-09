@@ -32,7 +32,7 @@ class ShortCutSpecAn(ShortCut):
     def __init__(self, parent):
         super(ShortCutSpecAn, self).__init__(parent)
         self.trace_idx = 1
-        self.trace_idxs = Enum(['select trace'] + parent.traces.keys())
+        self.trace_idxs = Enum(['select trace'] + list(parent.traces.keys()))
 
     @property
     def frequency_center(self):
@@ -58,7 +58,7 @@ class ShortCutSpecAn(ShortCut):
         
     @property
     def trace_name(self):
-        return self.parent.traces.keys()[self.trace_idx-1]
+        return list(self.parent.traces.keys())[self.trace_idx-1]
 
     @property
     def active_trace(self):
@@ -118,7 +118,7 @@ class IviCSpecAn(IviCWrapper):
         """
         
         if not trace_name:
-            trace_name = self.traces.keys()[0]
+            trace_name = list(self.traces.keys())[0]
         trace_name_c = ctypes.c_char_p(trace_name)
         trace = self.traces[trace_name]
         py_len = trace.trace_size
@@ -145,7 +145,7 @@ class IviCSpecAn(IviCWrapper):
         """
         
         if not trace_name:
-            trace_name = self.traces.keys()[0]
+            trace_name = list(self.traces.keys())[0]
         trace_name_c = ctypes.c_char_p(trace_name)
         trace = self.traces[trace_name]
         timeout_ms_c = ctypes.c_int32(timeout_ms)

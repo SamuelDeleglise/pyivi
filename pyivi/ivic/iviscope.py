@@ -41,11 +41,11 @@ class ShortCutScope(ShortCut):
     def __init__(self, parent):
         super(ShortCutScope, self).__init__(parent)
         self.channel_idx = 1
-        self.channel_idxs = Enum(['select channel'] + parent.channels.keys())
+        self.channel_idxs = Enum(['select channel'] + list(parent.channels.keys()))
         
     @property
     def channel_name(self):
-        return self.parent.channels.keys()[self.channel_idx-1]
+        return list(self.parent.channels.keys())[self.channel_idx-1]
 
     def fetch(self):
         return self.parent.channels[self.channel_name].fetch_waveform()
@@ -79,7 +79,7 @@ class IviCScope(IviCWrapper):
         """
         
         if not channel:
-            channel = self.channels.keys()[0]
+            channel = list(self.channels.keys())[0]
         chan = ctypes.c_char_p(channel)
         py_len = self.horz_record_length
         length = ctypes.c_int(py_len)
@@ -109,7 +109,7 @@ class IviCScope(IviCWrapper):
         """
         
         if not channel:
-            channel = self.channels.keys()[0]
+            channel = list(self.channels.keys())[0]
         chan = ctypes.c_char_p(channel)
         py_len = self.horz_record_length
         length = ctypes.c_int(py_len)
